@@ -77,10 +77,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demos\FrmDemos.cs">
+    <Compile Include="FormDemos\FrmDemos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Demos\FrmDemos.Designer.cs">
+    <Compile Include="FormDemos\FrmDemos.Designer.cs">
       <DependentUpon>FrmDemos.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FrmGestionEmpleados.cs">
@@ -127,7 +127,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Demos\FrmDemos.resx">
+    <EmbeddedResource Include="FormDemos\FrmDemos.resx">
       <DependentUpon>FrmDemos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmGestionEmpleados.resx">

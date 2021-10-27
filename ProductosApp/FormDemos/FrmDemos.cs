@@ -11,12 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProductosApp.Demos
+namespace ProductosApp.FormDemos
 {
     public partial class FrmDemos : Form
     {
-        public FrmDemos()
+        private IProductRepository productRepository;
+        public FrmDemos(IProductRepository productRepository)
         {
+            this.productRepository = productRepository;
             InitializeComponent();
         }
 
@@ -63,6 +65,28 @@ namespace ProductosApp.Demos
             }
 
             MessageBox.Show(builder.ToString());
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Producto p = new Producto()
+                {
+                    Id = productRepository.FindAll().Count==0 ? 1: productRepository.FindAll().Last().Id + 1,
+                    Nombre = $"Leche de soya {i+1} litros",
+                    Descripcion = $"Leche de {i+1}% grasa",
+                    UnidadMedida = Domain.Enums.MeasureUnit.Litros,
+                    InventoryMethod = Domain.Enums.Inventories.InventoryMethod.PEPS,
+                };
+                productRepository.Create(p); 
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            ICollection<Producto> productos = productRepository.FindAll(x=>x.Nombre.Contains("Leche"));
+            dgvProduct.DataSource = productos;
         }
     }
 }
