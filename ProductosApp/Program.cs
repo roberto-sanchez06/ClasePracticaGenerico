@@ -3,6 +3,9 @@ using AppCore.Processes;
 using AppCore.Services;
 using Autofac;
 using Demos;
+using Domain.Interfaces;
+using Infraestructure.Empleados;
+using Infraestructure.Inventories;
 //using Domain.Interfaces;
 //using Infraestructure.Empleados;
 //using Infraestructure.Inventories;
@@ -11,6 +14,9 @@ using ProductosApp.Formularios;
 using ProductosApp.Formularios.Inventories;
 using System;
 using App = System.Windows.Forms.Application;
+using IProductRepository = Domain.Interfaces.IProductRepository;
+using ProductRepository = Infraestructure.Inventories.ProductRepository;
+
 namespace ProductosApp
 {
     static class Program
@@ -22,24 +28,24 @@ namespace ProductosApp
         static void Main()
         {
             var builder = new ContainerBuilder();
-            //builder.RegisterType<EmpleadoModel>().As<IEmpleadoModel>();
-            //builder.RegisterType<EmpleadoServices>().As<IEmpleadoServices>();
-
-            //builder.RegisterType<ProductRepository>().As<IProductRepository>();
-            //builder.RegisterType<ProductService>().As<IProductService>();
-
-            //builder.RegisterType<ItemRepository>().As<IItemRepository>();
-            //builder.RegisterType<ItemService>().As<IItemService>();
-
-            //builder.RegisterType<OrderRepository>().As<IOrderRepository>();
-            //builder.RegisterType<OrderService>().As<IOrderService>();
-
-            //builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>();
-            //builder.RegisterType<OrderItemService>().As<IOrderItemService>();
-
-            //builder.RegisterType<PEPSInventoryCalculator>().As<IInventoryCalculator>();
+            builder.RegisterType<EmpleadoModel>().As<IEmpleadoModel>();
+            builder.RegisterType<EmpleadoServices>().As<IEmpleadoServices>();
 
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
+            builder.RegisterType<ProductService>().As<IProductService>();
+
+            builder.RegisterType<ItemRepository>().As<IItemRepository>();
+            builder.RegisterType<ItemService>().As<IItemService>();
+
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
+            builder.RegisterType<OrderService>().As<IOrderService>();
+
+            builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>();
+            builder.RegisterType<OrderItemService>().As<IOrderItemService>();
+
+            builder.RegisterType<PEPSInventoryCalculator>().As<IInventoryCalculator>();
+
+            //builder.RegisterType<ProductRepository>().As<IProductRepository>();
             var container = builder.Build();
 
 
@@ -49,7 +55,8 @@ namespace ProductosApp
             //                                   container.Resolve<IOrderItemService>(), container.Resolve<IItemService>(),
             //                                    container.Resolve<IInventoryCalculator>()));
 
-            App.Run(new FrmDemos(container.Resolve<IProductRepository>()));
+            //App.Run(new FrmDemos(container.Resolve<IProductRepository>()));
+            App.Run(new FrmGestionEmpleados(container.Resolve<IEmpleadoServices>()));
         }
     }
 }

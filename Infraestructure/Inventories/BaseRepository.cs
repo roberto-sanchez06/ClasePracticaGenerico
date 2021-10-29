@@ -119,5 +119,9 @@ namespace Infraestructure.Inventories
             return data == null ? 0 : (int)data[data.Length - 1].GetType().GetProperty("Id").GetValue(data[data.Length - 1]);
         }
 
+        public void OrdenarCualquierObj<T1>(T1[] data, IComparer<T1> comparador)
+        {
+            Array.Sort(data, comparador);
+        }
     }
 }

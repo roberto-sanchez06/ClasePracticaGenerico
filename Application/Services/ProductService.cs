@@ -1,4 +1,5 @@
-﻿using AppCore.Interfaces;
+﻿using AppCore.Filter.OrderItems;
+using AppCore.Interfaces;
 using Domain.Entities.Inventories;
 using Domain.Enums;
 using Domain.Interfaces;
@@ -46,7 +47,10 @@ namespace AppCore.Services
             Producto p = productoRepository.GetProductoById(productId);
             Item[] items = itemRepository.FindByProductId(p.Id);
 
-            Array.Sort(items, (a, b) => a.ExpirationDate.CompareTo(b.ExpirationDate));
+            //Array.Sort(items, (a, b) => a.ExpirationDate.CompareTo(b.ExpirationDate));
+            
+            //IMPLEMENTACION DEL METODO GENERICO DE ORDENAR
+            itemRepository.OrdenarCualquierObj<Item>(items, new ItemSortByExpirationDate());
 
             return new ProductItem()
             {

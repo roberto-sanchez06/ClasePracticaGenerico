@@ -206,7 +206,10 @@ namespace ProductosApp.Formularios.Inventories
         {
             OrderItem[] orderItems = orderItemService.FindAll();
 
-            Array.Sort(orderItems, new OrderItemSortByOrderDate());
+            //Array.Sort(orderItems, new OrderItemSortByOrderDate());
+
+            //IMPLEMENTACION DEL METODO GENERICO QUE ORDENA TODO
+            orderItemService.OrdenarCualquierObj<OrderItem>(orderItems, new OrderItemSortByOrderDate());
 
             //richTextBox1.AppendText($"Fecha \t\tDescripcion \t\tUnidades Costo Inventario Final Costo Venta\n");
             //foreach(OrderItem orderItem in orderItems)

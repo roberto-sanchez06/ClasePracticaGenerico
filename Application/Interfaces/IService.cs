@@ -12,5 +12,6 @@ namespace AppCore.Interfaces
         T[] FindAll();
         int GetLastId();
         void Add(T t, ref T[] data);
+        void OrdenarCualquierObj<T1>(T1[] data, IComparer<T1> comparer);
     }
 }

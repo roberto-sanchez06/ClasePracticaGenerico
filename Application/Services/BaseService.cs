@@ -40,6 +40,11 @@ namespace AppCore.Services
             return model.GetLastId();
         }
 
+        public void OrdenarCualquierObj<T1>(T1[] data, IComparer<T1> comparer)
+        {
+            model.OrdenarCualquierObj<T1>(data, comparer);
+        }
+
         public int Update(T t)
         {
             return model.GetLastId();

@@ -2,12 +2,8 @@
 
 namespace AppCore.Interfaces
 {
-    public interface IEmpleadoServices
+    public interface IEmpleadoServices : IService<Empleado>
     {
-        void Create(Empleado e);
-        int Update(Empleado e);
-        bool Delete(Empleado e);
-        Empleado FindById(int id);
-        Empleado[] FindAll();        
+        Empleado FindById(int id);      
     }
 }

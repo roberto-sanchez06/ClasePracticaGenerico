@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Inventories;
+﻿using AppCore.Interfaces;
+using Domain.Entities.Inventories;
 using Domain.Enums;
 using Infraestructure.Productos;
 using System;
@@ -15,7 +16,7 @@ namespace ProductosApp.Formularios
 {    
     public partial class FrmProducto : Form
     {
-        public ProductoModel PModel { get; set; }
+        public IProductService PModel { get; set; }
         public FrmProducto()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace ProductosApp.Formularios
         {
             Producto p = new Producto()
             {
-                Id = PModel.GetLastProductoId() + 1,
+                Id = PModel.GetLastId() + 1,
                 Nombre = txtNombre.Text,
                 Descripcion = txtDesc.Text,
                 //Existencia = (int)nudExist.Value,
@@ -42,7 +43,7 @@ namespace ProductosApp.Formularios
                 UnidadMedida = (MeasureUnit)cmbMeasureUnit.SelectedIndex
             };
 
-            PModel.Add(p);
+            PModel.Create(p);
 
             Dispose();
         }

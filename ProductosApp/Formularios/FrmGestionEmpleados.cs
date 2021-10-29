@@ -1,4 +1,5 @@
-﻿using AppCore.Interfaces;
+﻿using AppCore.Filter;
+using AppCore.Interfaces;
 using AppCore.Services;
 using Domain.Entities.Empleados;
 using Infraestructure.Empleados;
@@ -17,15 +18,17 @@ namespace ProductosApp.Formularios
     public partial class FrmGestionEmpleados : Form
     {
         private IEmpleadoServices empleadoServices;
+        private Random r;
         public FrmGestionEmpleados(IEmpleadoServices empleadoServices)
         {
             this.empleadoServices = empleadoServices;
+            r = new Random();
             InitializeComponent();
         }
 
         private void BtnDoc_Click(object sender, EventArgs e)
         {
-            Empleado emp = new Docente(1000, "001-000000-0000U", "Pepito Jose",
+            Empleado emp = new Docente(r.Next(1,1000), "001-000000-0000U", "Pepito Jose",
                 "Perez Soza", 23786.98M, DateTime.Now)
             {
                 CategoriaDocente = Domain.Enums.CategoriaDocente.Titular,
@@ -38,7 +41,7 @@ namespace ProductosApp.Formularios
 
         private void BtnAdmin_Click(object sender, EventArgs e)
         {
-            Empleado emp = new Administrativo(3000, "001-000000-0000P", "Ana Cecilia",
+            Empleado emp = new Administrativo(r.Next(1,1000), "001-000000-0000P", "Ana Cecilia",
                "Conda Jimenez", 337860.00M, DateTime.Now)
             {
                 HorasExtras = 23.5f,
@@ -57,6 +60,8 @@ namespace ProductosApp.Formularios
                 richTextBox1.Text = "No hay elementos a mostrar.";
                 return;
             }
+            //IMPLEMENTACION DEL METODO DE ORDENAR
+            empleadoServices.OrdenarCualquierObj<Empleado>(empleados, new EmpleadoOrderByCodigo());
             richTextBox1.Text = "";
             foreach(Empleado e in empleados)
             {

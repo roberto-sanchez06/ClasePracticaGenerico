@@ -12,5 +12,8 @@ namespace Domain.Interfaces
         T[] FindAll();
         int GetLastId();
         void Add(T t, ref T[] data);
+
+        //METODO GENERICO DE ORDENAR CUALQUIER OBJETO
+        void OrdenarCualquierObj<T1>(T1[] data, IComparer<T1> comparer);
     }
 }

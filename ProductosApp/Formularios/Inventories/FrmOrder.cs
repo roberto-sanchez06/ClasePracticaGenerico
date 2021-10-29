@@ -1,4 +1,5 @@
-﻿using AppCore.Interfaces;
+﻿using AppCore.Filter.OrderItems;
+using AppCore.Interfaces;
 using Domain.Entities.Inventories;
 using Domain.Enums.Inventories;
 using System;

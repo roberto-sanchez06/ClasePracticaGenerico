@@ -1,4 +1,5 @@
-﻿using Domain.Enums;
+﻿using AppCore.Interfaces;
+using Domain.Enums;
 using Infraestructure.Productos;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace ProductosApp.Formularios
 {
     public partial class FrmProductos : Form
     {
-        private ProductoModel productoModel;
-        public FrmProductos()
+        private IProductService productoModel;
+        public FrmProductos(IProductService product)
         {
-            productoModel = new ProductoModel();
+            this.productoModel = product;
+            //productoModel = new ProductoModel();
             InitializeComponent();
         }
 
